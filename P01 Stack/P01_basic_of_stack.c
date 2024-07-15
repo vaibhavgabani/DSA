@@ -1,5 +1,5 @@
 #include<stdio.h>
-#define max 2
+#define max 5 // define stack size here
 int stack_arr[max];
 int top = -1;
 
