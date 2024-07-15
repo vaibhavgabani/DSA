@@ -10,7 +10,6 @@ Welcome to the Stack Data Structure repository! This repository provides an over
 - [Implementations](#implementations)
 - [Applications](#applications)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
