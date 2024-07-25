@@ -4,13 +4,8 @@ int stack_arr[max];
 int top = -1;
 
 void push();
-void div();
-void mul();
-void sub();
-void sum();
 int is_operator(char ch);
 void postfix_evaluation();
-
 
 int main(){
 	postfix_evaluation();
@@ -27,61 +22,6 @@ void push(){
 	return;
 }
 
-void sum(){
-	if(top == -1 || top == 0){
-		printf("sum will not apply!!!\n");
-		return;
-	}
-
-	int num1 , num2;
-	num2 = stack_arr[top];
-	top--;
-	num1 = stack_arr[top];
-	int ans = num1 + num2;
-	stack_arr[top] = ans;
-}
-
-void sub(){
-	if(top == -1 || top == 0){
-		printf("sum will not apply!!!\n");
-		return;
-	}
-
-	int num1 , num2;
-	num2 = stack_arr[top];
-	top--;
-	num1 = stack_arr[top];
-	int ans = num1 - num2;
-	stack_arr[top] = ans;
-}
-
-void mul(){
-	if(top == -1 || top == 0){
-		printf("sum will not apply!!!\n");
-		return;
-	}
-
-	int num1 , num2;
-	num2 = stack_arr[top];
-	top--;
-	num1 = stack_arr[top];
-	int ans = num1 * num2;
-	stack_arr[top] = ans;
-}
-
-void div(){
-	if(top == -1 || top == 0){
-		printf("sum will not apply!!!\n");
-		return;
-	}
-
-	int num1 , num2;
-	num2 = stack_arr[top];
-	top--;
-	num1 = stack_arr[top];
-	int ans = num1 / num2;
-	stack_arr[top] = ans;
-}
 
 int is_operator(char ch) {
     if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%') {
@@ -101,15 +41,20 @@ void postfix_evaluation(){
                 printf("\n=================================");
                 return;
             } else {
-                if (str[i] == '+'){
-                sum();
+            	int num1 = 0, num2 = 0 , ans = 0;
+            	num2 = stack_arr[top];
+            	top--;
+            	num1 = stack_arr[top];
+            	if (str[i] == '+'){
+            		ans = num1 + num2;
                 } else if (str[i] == '-'){
-                    sub();
+                	ans = num1 - num2;
                 } else if (str[i] == '*'){
-                    mul();
+                	ans = num1 * num2;
                 } else if (str[i] == '/'){
-                    div();
+                	ans = num1 / num2;
                 }
+            	stack_arr[top] = ans;
             }
         } else {
             printf("\nEnter value of %c = ",str[i]);
