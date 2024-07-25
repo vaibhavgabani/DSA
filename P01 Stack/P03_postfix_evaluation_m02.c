@@ -1,28 +1,32 @@
 #include<stdio.h>
 #define max 20
+
+// Stack to hold the operands
 int stack_arr[max];
 int top = -1;
 
+// Function prototypes
 void push();
 int is_operator(char ch);
 void postfix_evaluation();
 
-int main(){
-	postfix_evaluation();
-	return 0;
+int main() {
+    postfix_evaluation();
+    return 0;
 }
 
-void push(){
-	if(top == max - 1){
-		printf("Stack is Full!!!!\n");
-		return;
-	}
-	top++;
-	scanf("%d",&stack_arr[top]);
-	return;
+// Push function to add operand to the stack
+void push() {
+    if(top == max - 1) {
+        printf("Stack is Full!!!!\n");
+        return;
+    }
+    top++;
+    scanf("%d", &stack_arr[top]);
+    return;
 }
 
-
+// Function to check if the character is an operator
 int is_operator(char ch) {
     if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%') {
         return 1;
@@ -30,38 +34,51 @@ int is_operator(char ch) {
     return 0;
 }
 
-void postfix_evaluation(){
+// Function to evaluate the postfix expression
+void postfix_evaluation() {
     char str[50];
-    printf("\nEnter your Postfix string : ");
-    scanf("%s",str);
-    for(int i = 0 ; str[i] != '\0' ; i++){
-        if((is_operator(str[i])) == 1){
+    printf("\nEnter your Postfix string: ");
+    scanf("%s", str);
+    for(int i = 0; str[i] != '\0'; i++) {
+        // Check if the character is an operator
+        if((is_operator(str[i])) == 1) {
+            // Ensure there are enough operands for the operation
             if(i < 2) {
-                printf("\n%c opration can't be done at %d ",str[i],i);
+                printf("\n%c operation can't be done at %d", str[i], i);
                 printf("\n=================================");
                 return;
             } else {
-            	int num1 = 0, num2 = 0 , ans = 0;
-            	num2 = stack_arr[top];
-            	top--;
-            	num1 = stack_arr[top];
-            	if (str[i] == '+'){
-            		ans = num1 + num2;
-                } else if (str[i] == '-'){
-                	ans = num1 - num2;
-                } else if (str[i] == '*'){
-                	ans = num1 * num2;
-                } else if (str[i] == '/'){
-                	ans = num1 / num2;
+                int num1 = 0, num2 = 0, ans = 0;
+                // Pop the top two operands from the stack
+                num2 = stack_arr[top];
+                top--;
+                num1 = stack_arr[top];
+                // Perform the operation using switch case
+                switch (str[i]) {
+                    case '+':
+                        ans = num1 + num2;
+                        break;
+                    case '-':
+                        ans = num1 - num2;
+                        break;
+                    case '*':
+                        ans = num1 * num2;
+                        break;
+                    case '/':
+                        ans = num1 / num2;
+                        break;
                 }
-            	stack_arr[top] = ans;
+                // Push the result back to the stack
+                stack_arr[top] = ans;
             }
         } else {
-            printf("\nEnter value of %c = ",str[i]);
+            // If the character is an operand, prompt the user for its value
+            printf("\nEnter value of %c = ", str[i]);
             push();
         }
     }
-    printf("\nFinal output = %d ",stack_arr[top]);
+    // Output the final result
+    printf("\nFinal output = %d", stack_arr[top]);
     top--;
     return;
 }
