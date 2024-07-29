@@ -10,7 +10,7 @@ void infix_to_postfix() {
     int i, k = 0;
 
     for (i = 0; infix[i] != '\0'; i++) {
-        if ((infix[i] >= 'a' && infix[i] <= 'z') || (infix[i] >= 'A' && infix[i] <= 'Z')) {  // Changed from isalpha to is_alpha
+        if ((infix[i] >= 'a' && infix[i] <= 'z') || (infix[i] >= 'A' && infix[i] <= 'Z')) {  
             postfix[k++] = infix[i];
         } else if (infix[i] == '(') {
             if (top < MAX - 1) {
