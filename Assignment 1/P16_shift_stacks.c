@@ -27,10 +27,10 @@ int main() {
         printf("| %d |\n",stack2[i]);
     }
 
-    int i = (max*2)-1 , j = (max-1);
+    int i = 0 , j = (max-1);
     while(j >= 0){
-    	stack3[i--] = stack1[j];
-    	stack3[i--] = stack2[j];
+    	stack3[i++] = stack1[j];
+    	stack3[i++] = stack2[j];
     	j--;
     }
 
