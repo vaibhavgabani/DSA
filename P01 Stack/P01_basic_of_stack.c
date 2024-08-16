@@ -1,6 +1,7 @@
 #include<stdio.h>
 #define max 5 // define stack size here
 int stack_arr[max];
+int max = 0;
 int top = -1;
 
 void push();
